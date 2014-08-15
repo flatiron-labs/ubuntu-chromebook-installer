@@ -1,3 +1,5 @@
+
+===============================================
 Codestarter installer for Ubuntu on Chromebooks
 ===============================================
 
@@ -55,3 +57,10 @@ Credit(s)
 * Jonathan Frank (Setsuna666) for creating Chromeeos and the Acer C720 profile
 * Everyone who contributed
 * Kevin Whitaker for c720p patches and Ubuntu specific changes from elementary OS
+* 
+
+Quick Tips:
+----------
+1)Switch to Ubuntu(CTRL+L) or Chrome OS(CTRL+D) when the "OS verification" screen comes on 
+2)Remember that you must be in developer mode in order to switch between Ubuntu or Chrome OS
+
