@@ -28,11 +28,16 @@ cd $tempbuild
 export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install emacs
 touch "emacs.done"
 
-echo "Installing RVM and Ruby 2.1.2..."
+echo "Installing RVM"
 cd $tempbuild
-curl -L https://get.rvm.io | bash -s stable --ruby=2.1.2
-cd $tempbuild
-touch "rvm-and-ruby.done"
+\curl -sSL https://get.rvm.io | bash -s stable --ruby
+source "~/.bashrc"
+touch "rvm.done"
+
+# echo "Installing Ruby 2.1.2"
+# cd $tempbuild
+# rvm install ruby-2.1.2
+# touch "ruby.done"
 
 echo "Installing node.js & npm"
 cd $tempbuild
@@ -55,6 +60,14 @@ echo "Installing Git"
 cd $tempbuild
 export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install git
 touch "git.done"
+
+echo 'Getting Flatiron School .bash_profile'
+cd $tempbuild
+if [ -f .bash_profile ]; then
+  mv .bash_profile .bash_profile.old
+fi
+curl "https://raw.githubusercontent.com/flatiron-school/dotfiles/master/bash_profile" -o ".bash_profile"
+touch "bash_profile.done"
 
 echo "Installing wallpaper"
 cd $tempbuild
@@ -82,5 +95,8 @@ picture-uri='file:///usr/share/backgrounds/codestarter-tree.jpg'" > /usr/share/g
 glib-compile-schemas /usr/share/glib-2.0/schemas/
 touch "dconf-overrides.done"
 
+
+
+
 # Cleanup
-rm -fr /tmp/tmp.*
+rm -rf /tmp/tmp.*
