@@ -28,6 +28,11 @@ cd $tempbuild
 export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install emacs
 touch "emacs.done"
 
+echo "Installing Curl"
+cd $tempbuild
+export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install curl
+touch "curl.done"
+
 echo "Installing RVM"
 cd $tempbuild
 \curl -sSL https://get.rvm.io | bash -s stable --ruby
@@ -37,7 +42,7 @@ touch "rvm.done"
 # echo "Installing Ruby 2.1.2"
 # cd $tempbuild
 # rvm install ruby-2.1.2
-# touch "ruby.done"
+# touch "ruby.done"s
 
 echo "Installing node.js & npm"
 cd $tempbuild
@@ -48,13 +53,6 @@ echo "Installing Java"
 cd $tempbuild
 export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install default-jdk
 touch "java.done"
-
-echo "Installing Minecraft"
-cd $tempbuild
-export DEBIAN_FRONTEND=noninteractive; add-apt-repository -y ppa:minecraft-installer-peeps/minecraft-installer
-export DEBIAN_FRONTEND=noninteractive; apt-get -y -q update
-export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install minecraft-installer
-touch "minecraft.done"
 
 echo "Installing Git"
 cd $tempbuild
