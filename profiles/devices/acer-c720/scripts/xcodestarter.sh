@@ -12,11 +12,6 @@ dpkg -i google-chrome-stable_current_amd64.deb
 export DEBIAN_FRONTEND=noninteractive; apt-get -f -y -q install
 touch "chrome.done"
 
-echo "Installing Scratch"
-cd $tempbuild
-export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install scratch
-touch "scratch.done"
-
 echo "Installing Sublime Text 3"
 cd $tempbuild
 wget http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3059_amd64.deb
@@ -33,32 +28,11 @@ cd $tempbuild
 export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install emacs
 touch "emacs.done"
 
-echo "Installing ruby-install"
+echo "Installing RVM and Ruby 2.1.2..."
 cd $tempbuild
-wget -O ruby-install-0.4.3.tar.gz https://github.com/postmodern/ruby-install/archive/v0.4.3.tar.gz
-tar -xzf ruby-install-0.4.3.tar.gz
-cd ruby-install-0.4.3/
-make install
+curl -L https://get.rvm.io | bash -s stable --ruby=2.1.2
 cd $tempbuild
-touch "ruby-install.done"
-
-echo "Installing ruby"
-cd $tempbuild
-ruby-install ruby 2.1.2
-touch "ruby.done"
-
-echo "Installing chruby"
-cd $tempbuild
-wget -O chruby-0.3.8.tar.gz https://github.com/postmodern/chruby/archive/v0.3.8.tar.gz
-tar -xzf chruby-0.3.8.tar.gz
-cd chruby-0.3.8/
-make install
-echo "" >> /etc/skel/.bashrc
-echo "source '/usr/local/share/chruby/chruby.sh'" >> /etc/skel/.bashrc
-echo "source '/usr/local/share/chruby/auto.sh'" >> /etc/skel/.bashrc
-echo "chruby ruby-2.1.2" >> /etc/skel/.bashrc
-cd $tempbuild
-touch "chruby.done"
+touch "rvm-and-ruby.done"
 
 echo "Installing node.js & npm"
 cd $tempbuild
