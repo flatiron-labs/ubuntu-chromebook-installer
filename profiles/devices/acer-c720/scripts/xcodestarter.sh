@@ -65,18 +65,6 @@ cd $tempbuild
 export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install nodejs npm
 touch "nodejs.done"
 
-echo "Installing Java"
-cd $tempbuild
-export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install default-jdk
-touch "java.done"
-
-echo "Installing Minecraft"
-cd $tempbuild
-export DEBIAN_FRONTEND=noninteractive; add-apt-repository -y ppa:minecraft-installer-peeps/minecraft-installer
-export DEBIAN_FRONTEND=noninteractive; apt-get -y -q update
-export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install minecraft-installer
-touch "minecraft.done"
-
 echo "Installing Git"
 cd $tempbuild
 export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install git
