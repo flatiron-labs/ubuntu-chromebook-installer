@@ -5,11 +5,6 @@
 # Create a temp directory for our work
 tempbuild=`mktemp -d`
 
-echo "Installing Curl"
-cd $tempbuild
-export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install curl
-touch "curl.done"
-
 echo "Installing Chrome"
 cd $tempbuild
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -33,14 +28,15 @@ cd $tempbuild
 export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install emacs
 touch "emacs.done"
 
-# I need to add the following software
-# curl
-# build-essential
-# postgres
-# maybe sqlite3
-# nokogiri dependencies
+echo "Installing Curl"
+cd $tempbuild
+export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install curl
+touch "curl.done"
 
-# Might need this if anything needs to curl installed here
+echo "Installing Postgres"
+cd $tempbuild
+export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install postgres
+touch "postgres.done"
 
 echo "Installing node.js & npm"
 cd $tempbuild
@@ -51,14 +47,6 @@ echo "Installing Git"
 cd $tempbuild
 export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install git
 touch "git.done"
-
-echo 'Getting Flatiron School .bash_profile'
-cd $tempbuild
-if [ -f .bash_profile ]; then
-  mv .bash_profile .bash_profile.old
-fi
-curl "nontent.com/flatiron-school/dotfiles/master/bash_profile" -o ".bash_profile"
-touch "bash_profile.done"
 
 echo "Installing wallpaper"
 cd $tempbuild
