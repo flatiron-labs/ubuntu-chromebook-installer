@@ -16,6 +16,29 @@ echo "Installing Sublime Text 3"
 cd $tempbuild
 wget http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3059_amd64.deb
 dpkg -i sublime-text_build-3059_amd64.deb
+This should be put in the ubuntu installer when it adds sublime
+# function setsUpSublimePreferences {
+#   echo 'Setting Up SublimeText 3.0...'
+#   cd ~
+
+
+#   # cp -r "/Volumes/Sublime Text 2/Sublime Text 2.app" "/Applications/Sublime Text 2.app"
+#   sudo ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" /usr/local/bin
+#   open "/Applications/Sublime Text 2.app" && sleep 3 && killall "Sublime Text 2"
+  
+#   cd "$HOME/Library/Application Support/Sublime Text 2/Installed Packages"
+#   curl "https://sublime.wbond.net/Package%20Control.sublime-package" -o "Package Control.sublime-package"
+
+#   cd "$HOME/Library/Application Support/Sublime Text 2/Packages/Color Scheme - Default"
+#   curl "http://flatironschool.s3.amazonaws.com/curriculum/resources/environment/themes/Solarized%20Flatiron.zip" -o "Solarized Flatiron.zip"
+#   tar -zxvf "Solarized Flatiron.zip"
+#   rm "Solarized Flatiron.zip"
+  
+#   cd "$HOME/Library/Application Support/Sublime Text 2/Packages/Default"
+#   sed -i "s/\"color_scheme\": \"Packages\/Color Scheme - Default\/Monokai.tmTheme\",/\"color_scheme\": \"Packages\/Color Scheme - Default\/Solarized Light (Flatiron).tmTheme\",/g" Preferences.sublime-settings
+#   sed -i "s/\"tab_size\": 4,/\"tab_size\": 2,/g" Preferences.sublime-settings
+#   sed -i "s/\"translate_tabs_to_spaces\": false,/\"translate_tabs_to_spaces\": true,/g" Preferences.sublime-settings
+# }
 touch "sublime.done"
 
 echo "Installing Vim"
@@ -37,6 +60,16 @@ echo "Installing Postgres"
 cd $tempbuild
 export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install postgresql
 touch "postgres.done"
+
+echo "Installing Parcellite"
+cd $tempbuild
+export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install parcellite
+panelOrderingFile="/usr/share/indicator-application/ordering-override.keyfile"
+if [ -f $panelOrderingFile ]; then
+  rm $panelOrderingFile
+fi
+curl "some_path" -o
+touch "parcellite.done"
 
 echo "Installing node.js & npm"
 cd $tempbuild
