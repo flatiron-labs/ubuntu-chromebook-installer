@@ -35,7 +35,7 @@ touch "curl.done"
 
 echo "Installing Postgres"
 cd $tempbuild
-export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install postgres
+export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install postgresql
 touch "postgres.done"
 
 echo "Installing node.js & npm"
