@@ -33,12 +33,12 @@ cd $tempbuild
 export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install curl
 touch "curl.done"
 
-echo "Installing RVM and Ruby"
-cd $tempbuild
-\curl -sSL https://get.rvm.io | bash -s stable --ruby
-source ~/.bashrc
-source /etc/profile.d/rvm.sh
-touch "rvm.done"
+# echo "Installing RVM and Ruby"
+# cd $tempbuild
+# \curl -sSL https://get.rvm.io | bash -s stable --ruby
+# source ~/.bashrc
+# source /etc/profile.d/rvm.sh
+# touch "rvm.done"
 
 # echo "Installing Ruby 2.1.2"
 # cd $tempbuild
@@ -77,7 +77,7 @@ echo "Installing dconf overrides"
 cd $tempbuild
 echo -e "[com.canonical.Unity.Launcher]\n\
 \n\
-favorites=['application://nautilus.desktop', 'application://google-chrome.desktop', 'application://sublime_text.desktop', 'application://gnome-terminal.desktop', 'application://ubuntu-software-center.desktop', 'application://unity-control-center.desktop', 'unity://running-apps', 'unity://expo-icon']
+favorites=['application://nautilus.desktop', 'application://google-chrome.desktop', 'application://sublime_text.desktop', 'application://gnome-terminal.desktop', 'application://ubuntu-software-center.desktop', 'application://unity-control-center.desktop']
 \n\
 [org.gnome.settings-daemon.peripherals.touchpad]\n\
 \n\
@@ -88,9 +88,9 @@ natural-scroll=true\n\
 picture-uri='file:///usr/share/backgrounds/codestarter-tree.jpg'" > /usr/share/glib-2.0/schemas/codestarter.gschema.override
 glib-compile-schemas /usr/share/glib-2.0/schemas/
 touch "dconf-overrides.done"
-# removed this from favorites arr 'unity://devices'
+# removed this from favorites arr 'unity://running-apps', 'unity://expo-icon', 'unity://devices'
 
-
+source /etc/profile.d/rvm.sh
 
 # Cleanup
 rm -rf /tmp/tmp.*
