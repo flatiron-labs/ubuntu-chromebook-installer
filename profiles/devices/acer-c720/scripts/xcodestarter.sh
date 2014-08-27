@@ -5,6 +5,11 @@
 # Create a temp directory for our work
 tempbuild=`mktemp -d`
 
+echo "Installing Curl"
+cd $tempbuild
+export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install curl
+touch "curl.done"
+
 echo "Installing Chrome"
 cd $tempbuild
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -28,22 +33,14 @@ cd $tempbuild
 export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install emacs
 touch "emacs.done"
 
-echo "Installing Curl"
-cd $tempbuild
-export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install curl
-touch "curl.done"
+# I need to add the following software
+# curl
+# build-essential
+# postgres
+# maybe sqlite3
+# nokogiri dependencies
 
-# echo "Installing RVM and Ruby"
-# cd $tempbuild
-# \curl -sSL https://get.rvm.io | bash -s stable --ruby
-# source ~/.bashrc
-# source /etc/profile.d/rvm.sh
-# touch "rvm.done"
-
-# echo "Installing Ruby 2.1.2"
-# cd $tempbuild
-# rvm install ruby-2.1.2
-# touch "ruby.done"s
+# Might need this if anything needs to curl installed here
 
 echo "Installing node.js & npm"
 cd $tempbuild
@@ -60,7 +57,7 @@ cd $tempbuild
 if [ -f .bash_profile ]; then
   mv .bash_profile .bash_profile.old
 fi
-curl "https://raw.githubusercontent.com/flatiron-school/dotfiles/master/bash_profile" -o ".bash_profile"
+curl "nontent.com/flatiron-school/dotfiles/master/bash_profile" -o ".bash_profile"
 touch "bash_profile.done"
 
 echo "Installing wallpaper"
