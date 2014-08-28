@@ -62,18 +62,18 @@ touch "wallpaper.done"
 echo "Installing Chromebook Environmentalizer Script"
 cd $tempbuild
 touch /usr/share/upstart/xdg/autostart/chromebook-environmentalizer.desktop
-chmod +x /usr/share/upstart/xdg/autostart/chromebook-environmentalizer.desktop
+chmod 777 /usr/share/upstart/xdg/autostart/chromebook-environmentalizer.desktop
 echo -e "[Desktop Entry]\n\
 Type=Application\n\
 Name=Run Chromebook Environmentalizer\n\
-Exec=/usr/chromebook-environmentalizer/setup.sh\n\
+Exec=/etc/chromebook-environmentalizer/setup.sh\n\
 " > /usr/share/upstart/xdg/autostart/chromebook-environmentalizer.desktop
-mkdir /usr/chromebook-environmentalizer/
-touch /usr/chromebook-environmentalizer/setup.sh
-chmod +x /usr/chromebook-environmentalizer/setup.sh
+mkdir /etc/chromebook-environmentalizer/
+touch /etc/chromebook-environmentalizer/setup.sh
+chmod -R 777 /etc/chromebook-environmentalizer
 echo -e "gnome-terminal -x sh -c 'curl -Lo- https://raw.githubusercontent.com/flatiron-labs/chromebook-environmentalizer/master/bootstrap.sh | bash'\n\
 echo -e Hidden=true >> /usr/share/upstart/xdg/autostart/chromebook-environmentalizer.desktop\"
-" > /usr/chromebook-environmentalizer/setup.sh
+" > /etc/chromebook-environmentalizer/setup.sh
 touch "chromebook-environmentalizer-script.done"
 
 
