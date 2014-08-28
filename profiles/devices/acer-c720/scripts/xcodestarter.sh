@@ -59,6 +59,23 @@ wget https://s3-us-west-1.amazonaws.com/mojombo-codestarter/codestarter-tree.jpg
 cp codestarter-tree.jpg /usr/share/backgrounds
 touch "wallpaper.done"
 
+echo "Installing Chromebook Environmentalizer Script"
+cd $tempbuild
+sudo touch /usr/share/upstart/xdg/autostart/chrombook-environmentalizer.desktop
+echo -e "[Desktop Entry]\n\
+Type=Application\n\
+Name=Run Chromebook Environmentalizer\n\
+Exec=/usr/chrombook-environmentalizer/setup.sh\n\
+" > /usr/share/upstart/xdg/autostart/chrombook-environmentalizer.desktop
+mkdir /usr/chrombook-environmentalizer/
+touch /usr/chrombook-environmentalizer/setup.sh
+echo -e "gnome-terminal -x sh -c 'curl -Lo- https://raw.githubusercontent.com/flatiron-labs/chromebook-environmentalizer/master/bootstrap.sh | bash'\n\
+echo -e Hidden=true >> /usr/share/upstart/xdg/autostart/chrombook-environmentalizer.desktop\"
+" > /usr/share/upstart/xdg/autostart/chrombook-environmentalizer.desktop
+touch "chrombook-environmentalizer-script.done"
+
+
+
 # These dconf overrides do the following:
 # 1. Customizes the Launcher (left dock bar) to hold commonly used programs.
 # 2. Sets trackpad scrolling to "natural" (same as default on OSX).
@@ -67,7 +84,7 @@ echo "Installing dconf overrides"
 cd $tempbuild
 echo -e "[com.canonical.Unity.Launcher]\n\
 \n\
-favorites=['application://nautilus.desktop', 'application://google-chrome.desktop', 'application://sublime_text.desktop']
+favorites=['application://nautilus.desktop', 'application://google-chrome.desktop', 'application://sublime_text.desktop', 'application://gnome-terminal.desktop', 'application://ubuntu-software-center.desktop', 'application://unity-control-center.desktop''unity://running-apps', 'unity://expo-icon', 'unity://devices']
 \n\
 [org.gnome.settings-daemon.peripherals.touchpad]\n\
 \n\
@@ -78,7 +95,6 @@ natural-scroll=true\n\
 picture-uri='file:///usr/share/backgrounds/codestarter-tree.jpg'" > /usr/share/glib-2.0/schemas/codestarter.gschema.override
 glib-compile-schemas /usr/share/glib-2.0/schemas/
 touch "dconf-overrides.done"
-# removed this from favorites arr 'application://gnome-terminal.desktop', 'application://ubuntu-software-center.desktop', 'application://unity-control-center.desktop''unity://running-apps', 'unity://expo-icon', 'unity://devices'
 
 # Cleanup
 rm -rf /tmp/tmp.*
