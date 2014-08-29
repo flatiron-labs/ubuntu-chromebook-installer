@@ -1,5 +1,6 @@
-mkdir $HOME/chrubuntu-installer
-cd $HOME/chrubuntu-installer
+chmod -R 777 /etc
+sudo mkdir /etc/chrubuntu-installer
+cd /etc/chrubuntu-installer
 
 wget https://github.com/flatiron-labs/ubuntu-chromebook-installer/archive/master.tar.gz
 tar xzf master.tar.gz
