@@ -1,4 +1,4 @@
-chmod -R 777 /etc
+sudo chmod -R 777 /etc
 sudo mkdir /etc/chrubuntu-installer
 cd /etc/chrubuntu-installer
 
