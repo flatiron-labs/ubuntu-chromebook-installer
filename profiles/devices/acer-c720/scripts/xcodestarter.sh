@@ -76,7 +76,7 @@ mkdir /etc/chromebook-environmentalizer/
 touch /etc/chromebook-environmentalizer/setup.sh
 chmod -R 777 /etc/chromebook-environmentalizer
 echo -e "gnome-terminal -x sh -c 'curl -Lo- https://raw.githubusercontent.com/flatiron-labs/chromebook-environmentalizer/master/bootstrap.sh | bash'\n\
-echo -e Hidden=true >> /usr/share/upstart/xdg/autostart/chromebook-environmentalizer.desktop\"
+sudo echo -e Hidden=true >> /usr/share/upstart/xdg/autostart/chromebook-environmentalizer.desktop
 " > /etc/chromebook-environmentalizer/setup.sh
 touch "chromebook-environmentalizer-script.done"
 
