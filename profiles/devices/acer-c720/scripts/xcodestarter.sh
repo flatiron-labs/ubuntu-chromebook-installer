@@ -59,7 +59,7 @@ wget https://s3-us-west-1.amazonaws.com/mojombo-codestarter/codestarter-tree.jpg
 cp codestarter-tree.jpg /usr/share/backgrounds
 touch "wallpaper.done"
 
-echo "Installing Chromebook Environmentalizer Script"
+echo "Installing Chromebook Environmentalizer Desktop"
 cd $tempbuild
 touch /usr/share/upstart/xdg/autostart/chromebook-environmentalizer.desktop
 chmod 777 /usr/share/upstart/xdg/autostart/chromebook-environmentalizer.desktop
@@ -68,6 +68,10 @@ Type=Application\n\
 Name=Run Chromebook Environmentalizer\n\
 Exec=/etc/chromebook-environmentalizer/setup.sh\n\
 " > /usr/share/upstart/xdg/autostart/chromebook-environmentalizer.desktop
+touch "chromebook-environmentalizer-desktop.done"
+
+echo "Installing Chromebook Environmentalizer Script"
+cd $tempbuild
 mkdir /etc/chromebook-environmentalizer/
 touch /etc/chromebook-environmentalizer/setup.sh
 chmod -R 777 /etc/chromebook-environmentalizer
@@ -86,7 +90,7 @@ echo "Installing dconf overrides"
 cd $tempbuild
 echo -e "[com.canonical.Unity.Launcher]\n\
 \n\
-favorites=['application://nautilus.desktop', 'application://google-chrome.desktop', 'application://sublime_text.desktop', 'application://gnome-terminal.desktop', 'application://ubuntu-software-center.desktop', 'application://unity-control-center.desktop''unity://running-apps', 'unity://expo-icon', 'unity://devices']
+favorites=['application://nautilus.desktop', 'application://google-chrome.desktop', 'application://sublime_text.desktop', 'application://gnome-terminal.desktop', 'application://ubuntu-software-center.desktop', 'application://unity-control-center.desktop', 'unity://running-apps', 'unity://expo-icon', 'unity://devices']
 \n\
 [org.gnome.settings-daemon.peripherals.touchpad]\n\
 \n\
