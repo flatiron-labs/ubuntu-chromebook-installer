@@ -19,7 +19,7 @@ echo LID0 > /proc/acpi/wakeup
 echo TPAD > /proc/acpi/wakeup
 echo TSCR > /proc/acpi/wakeup
 
-#Fix to set the brightness to 50% on boot
-echo 468 > /sys/class/backlight/intel_backlight/brightness
+#Fix to set the brightness to 100% on boot
+echo 936 > /sys/class/backlight/intel_backlight/brightness
 
 exit 0

@@ -80,8 +80,6 @@ sudo echo -e Hidden=true >> /usr/share/upstart/xdg/autostart/chromebook-environm
 " > /etc/chromebook-environmentalizer/setup.sh
 touch "chromebook-environmentalizer-script.done"
 
-
-
 # These dconf overrides do the following:
 # 1. Customizes the Launcher (left dock bar) to hold commonly used programs.
 # 2. Sets trackpad scrolling to "natural" (same as default on OSX).
