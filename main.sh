@@ -228,7 +228,7 @@ if [ ! -e "$chrubuntu_runonce" ]; then
     log_msg "INFO" "System will reboot in 10 seconds..."
     touch $chrubuntu_runonce
     sleep 10
-    sudo reboot
+    # sudo reboot
     exit 0
 else
     log_msg "INFO" "ChrUbuntu partitioning already done...skipping"
