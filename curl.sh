@@ -1,6 +1,7 @@
-sudo chmod -R 777 /etc
-sudo mkdir /etc/chrubuntu-installer
-cd /etc/chrubuntu-installer
+sudo chmod 777 /var
+mkdir /var/chrubuntu-installer
+cd /var/chrubuntu-installer
+sudo chmod 755 /var
 
 wget https://github.com/flatiron-labs/ubuntu-chromebook-installer/archive/master.tar.gz
 tar xzf master.tar.gz
