@@ -44,24 +44,24 @@ state_size="`cgpt show -i 1 -n -s -q ${target_disk}`"
 max_ubuntu_size=$(($state_size/1024/1024/2))
 rec_ubuntu_size=$(($max_ubuntu_size - 1))
 # If KERN-C and ROOT-C are one, we partition, otherwise assume they're what they need to be...
-  ubuntu_size=9
-if [ "$ckern_size" =  "1" -o "$croot_size" = "1" ]
-then
-while :
-do
-  #read -p "Enter the size in gigabytes you want to reserve for elementary OS. Acceptable range is 5 to $max_ubuntu_size  but $rec_ubuntu_size is the recommended maximum: " ubuntu_size
-  if [ ! $ubuntu_size -ne 0 2>/dev/null ]
-  then
-    echo_red "\n\nNumbers only please...\n\n"
-    continue
-  fi
-  if [ $ubuntu_size -lt 5 -o $ubuntu_size -gt $max_ubuntu_size ]
-  then
-    echo_red "\n\nThat number is out of range. Enter a number 5 through $max_ubuntu_size\n\n"
-    continue
-  fi
-  break
-done
+ubuntu_size=9
+# if [ "$ckern_size" =  "1" -o "$croot_size" = "1" ]
+# then
+# while :
+# do
+#   #read -p "Enter the size in gigabytes you want to reserve for elementary OS. Acceptable range is 5 to $max_ubuntu_size  but $rec_ubuntu_size is the recommended maximum: " ubuntu_size
+#   if [ ! $ubuntu_size -ne 0 2>/dev/null ]
+#   then
+#     echo_red "\n\nNumbers only please...\n\n"
+#     continue
+#   fi
+#   if [ $ubuntu_size -lt 5 -o $ubuntu_size -gt $max_ubuntu_size ]
+#   then
+#     echo_red "\n\nThat number is out of range. Enter a number 5 through $max_ubuntu_size\n\n"
+#     continue
+#   fi
+#   break
+# done
 # We've got our size in GB for ROOT-C so do the math...
 
 #calculate sector size for rootc
