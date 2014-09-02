@@ -73,7 +73,7 @@ if [ "$ckern_size" =  "1" -o "$croot_size" = "1" ]
   # done
   # sets default partition size
   if [[ -z "$ubuntu_size" ]]; then
-    ubuntu_size=6
+    ubuntu_size=9
   fi
 
   # We've got our size in GB for ROOT-C so do the math...
