@@ -91,7 +91,7 @@ if [ "$ckern_size" =  "1" -o "$croot_size" = "1" ]
   echo_green "\n\nModifying partition table to make room for Ubuntu." 
   echo_green "Your Chromebook will reboot, wipe your data and then"
   echo_green "you should re-run this script..."
-  umount -f /mnt/stateful_partition
+  umount -lf /mnt/stateful_partition
 
   # stateful first
   cgpt add -i 1 -b $stateful_start -s $stateful_size -l STATE ${target_disk}
