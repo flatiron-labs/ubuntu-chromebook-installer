@@ -12,11 +12,15 @@ dpkg -i google-chrome-stable_current_amd64.deb
 export DEBIAN_FRONTEND=noninteractive; apt-get -f -y -q install
 touch "chrome.done"
 
-echo "Installing Sublime Text 3"
+echo "Installing Scratch"
 cd $tempbuild
-wget http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3059_amd64.deb
-dpkg -i sublime-text_build-3059_amd64.deb
-touch "sublime.done"
+export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install scratch
+touch "scratch.done"
+
+echo "Installing Geany"
+cd $tempbuild
+export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install geany geany-plugins
+touch "geany.done"
 
 echo "Installing Vim"
 cd $tempbuild
@@ -28,25 +32,49 @@ cd $tempbuild
 export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install emacs
 touch "emacs.done"
 
-echo "Installing Curl"
+echo "Installing ruby-install"
 cd $tempbuild
-export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install curl
-touch "curl.done"
+wget -O ruby-install-0.4.3.tar.gz https://github.com/postmodern/ruby-install/archive/v0.4.3.tar.gz
+tar -xzf ruby-install-0.4.3.tar.gz
+cd ruby-install-0.4.3/
+make install
+cd $tempbuild
+touch "ruby-install.done"
 
-echo "Installing Postgres"
+echo "Installing ruby"
 cd $tempbuild
-export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install postgresql
-touch "postgres.done"
+ruby-install ruby 2.1.2
+touch "ruby.done"
 
-echo "Installing Parcellite"
+echo "Installing chruby"
 cd $tempbuild
-export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install parcellite
-touch "parcellite.done"
+wget -O chruby-0.3.8.tar.gz https://github.com/postmodern/chruby/archive/v0.3.8.tar.gz
+tar -xzf chruby-0.3.8.tar.gz
+cd chruby-0.3.8/
+make install
+echo "" >> /etc/skel/.bashrc
+echo "source '/usr/local/share/chruby/chruby.sh'" >> /etc/skel/.bashrc
+echo "source '/usr/local/share/chruby/auto.sh'" >> /etc/skel/.bashrc
+echo "chruby ruby-2.1.2" >> /etc/skel/.bashrc
+cd $tempbuild
+touch "chruby.done"
 
 echo "Installing node.js & npm"
 cd $tempbuild
 export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install nodejs npm
 touch "nodejs.done"
+
+echo "Installing Java"
+cd $tempbuild
+export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install default-jdk
+touch "java.done"
+
+echo "Installing Minecraft"
+cd $tempbuild
+export DEBIAN_FRONTEND=noninteractive; add-apt-repository -y ppa:minecraft-installer-peeps/minecraft-installer
+export DEBIAN_FRONTEND=noninteractive; apt-get -y -q update
+export DEBIAN_FRONTEND=noninteractive; apt-get -y -q install minecraft-installer
+touch "minecraft.done"
 
 echo "Installing Git"
 cd $tempbuild
@@ -59,29 +87,6 @@ wget https://s3-us-west-1.amazonaws.com/mojombo-codestarter/codestarter-tree.jpg
 cp codestarter-tree.jpg /usr/share/backgrounds
 touch "wallpaper.done"
 
-echo "Installing Chromebook Environmentalizer Desktop"
-cd $tempbuild
-touch /usr/share/upstart/xdg/autostart/chromebook-environmentalizer.desktop
-chmod 777 /usr/share/upstart/xdg/autostart/chromebook-environmentalizer.desktop
-echo -e "[Desktop Entry]\n\
-Type=Application\n\
-Name=Run Chromebook Environmentalizer\n\
-Exec=/etc/chromebook-environmentalizer/setup.sh
-" > /usr/share/upstart/xdg/autostart/chromebook-environmentalizer.desktop
-touch "chromebook-environmentalizer-desktop.done"
-
-echo "Installing Chromebook Environmentalizer Script"
-cd $tempbuild
-mkdir /etc/chromebook-environmentalizer/
-touch /etc/chromebook-environmentalizer/setup.sh
-chmod -R 777 /etc/chromebook-environmentalizer
-echo -e "gnome-terminal -x sh -c 'curl -Lo- https://raw.githubusercontent.com/flatiron-labs/chromebook-environmentalizer/master/bootstrap.sh | bash'\n\
-sudo echo -e 'Hidden=true' >> /usr/share/upstart/xdg/autostart/chromebook-environmentalizer.desktop\n\
-sudo rm -rf /etc/chromebook-environmentalizer\n\
-sudo rm /usr/share/upstart/xdg/autostart/chromebook-environmentalizer.desktop
-" > /etc/chromebook-environmentalizer/setup.sh
-touch "chromebook-environmentalizer-script.done"
-
 # These dconf overrides do the following:
 # 1. Customizes the Launcher (left dock bar) to hold commonly used programs.
 # 2. Sets trackpad scrolling to "natural" (same as default on OSX).
@@ -90,7 +95,7 @@ echo "Installing dconf overrides"
 cd $tempbuild
 echo -e "[com.canonical.Unity.Launcher]\n\
 \n\
-favorites=['application://nautilus.desktop', 'application://google-chrome.desktop', 'application://sublime_text.desktop', 'application://gnome-terminal.desktop', 'application://ubuntu-software-center.desktop', 'application://unity-control-center.desktop', 'unity://running-apps', 'unity://expo-icon', 'unity://devices']
+favorites=['application://nautilus.desktop', 'application://google-chrome.desktop', 'application://geany.desktop', 'application://gnome-terminal.desktop', 'application://minecraft.desktop', 'application://ubuntu-software-center.desktop', 'application://unity-control-center.desktop', 'unity://running-apps']
 \n\
 [org.gnome.settings-daemon.peripherals.touchpad]\n\
 \n\
@@ -103,4 +108,4 @@ glib-compile-schemas /usr/share/glib-2.0/schemas/
 touch "dconf-overrides.done"
 
 # Cleanup
-rm -rf /tmp/tmp.*
+rm -fr /tmp/tmp.*
