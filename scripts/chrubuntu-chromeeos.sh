@@ -61,6 +61,13 @@ do
   fi
   break
 done
+# sets default partition size
+if [[ -z "$ubuntu_size" ]]; then
+  ubuntu_size=6
+fi
+
+
+
 # We've got our size in GB for ROOT-C so do the math...
 
 #calculate sector size for rootc
