@@ -6,7 +6,7 @@ fi
 
 cd /var/chrubuntu-installer
 
-if [[ ! -f new-curl.tar.gz ]]
+if [[ ! -f new-curl.tar.gz ]]; then
   wget https://github.com/flatiron-labs/ubuntu-chromebook-installer/archive/new-curl.tar.gz
   tar xzf new-curl.tar.gz
 fi
