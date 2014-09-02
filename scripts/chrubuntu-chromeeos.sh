@@ -87,7 +87,7 @@ rootc_start=$(($kernc_start + $kernc_size))
 echo_green "\n\nModifying partition table to make room for Ubuntu." 
 echo_green "Your Chromebook will reboot, wipe your data and then"
 echo_green "you should re-run this script..."
-umount -lf /mnt/stateful_partition
+umount -f /mnt/stateful_partition
 
 # stateful first
 cgpt add -i 1 -b $stateful_start -s $stateful_size -l STATE ${target_disk}
