@@ -43,6 +43,16 @@ state_size="`cgpt show -i 1 -n -s -q ${target_disk}`"
 
 max_ubuntu_size=$(($state_size/1024/1024/2))
 rec_ubuntu_size=$(($max_ubuntu_size - 1))
+
+# Echos variables so we can see what they are
+echo_yellow "target disk: $target_disk"
+echo_yellow "ckern size: $ckern_size"
+echo_yellow "croot size: $croot_size"
+echo_yellow "state size: $state_size"
+echo_yellow "max ubuntu size: $max_ubuntu_size"
+echo_yellow "rec ubuntu size: $rec_ubuntu_size"
+
+
 # If KERN-C and ROOT-C are one, we partition, otherwise assume they're what they need to be...
 if [ "$ckern_size" =  "1" -o "$croot_size" = "1" ]
   then
