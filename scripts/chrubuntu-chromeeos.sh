@@ -45,67 +45,65 @@ max_ubuntu_size=$(($state_size/1024/1024/2))
 rec_ubuntu_size=$(($max_ubuntu_size - 1))
 # If KERN-C and ROOT-C are one, we partition, otherwise assume they're what they need to be...
 if [ "$ckern_size" =  "1" -o "$croot_size" = "1" ]
-then
-while :
-do
-  read -p "Enter the size in gigabytes you want to reserve for elementary OS. Acceptable range is 5 to $max_ubuntu_size  but $rec_ubuntu_size is the recommended maximum: " ubuntu_size
-  if [ ! $ubuntu_size -ne 0 2>/dev/null ]
   then
-    echo_red "\n\nNumbers only please...\n\n"
-    continue
+  while :
+  do
+    read -p "Enter the size in gigabytes you want to reserve for elementary OS. Acceptable range is 5 to $max_ubuntu_size  but $rec_ubuntu_size is the recommended maximum: " ubuntu_size
+    if [ ! $ubuntu_size -ne 0 2>/dev/null ]
+    then
+      echo_red "\n\nNumbers only please...\n\n"
+      continue
+    fi
+    if [ $ubuntu_size -lt 5 -o $ubuntu_size -gt $max_ubuntu_size ]
+    then
+      echo_red "\n\nThat number is out of range. Enter a number 5 through $max_ubuntu_size\n\n"
+      continue
+    fi
+    break
+  done
+  # sets default partition size
+  if [[ -z "$ubuntu_size" ]]; then
+    ubuntu_size=6
   fi
-  if [ $ubuntu_size -lt 5 -o $ubuntu_size -gt $max_ubuntu_size ]
-  then
-    echo_red "\n\nThat number is out of range. Enter a number 5 through $max_ubuntu_size\n\n"
-    continue
-  fi
-  break
-done
-# sets default partition size
-if [[ -z "$ubuntu_size" ]]; then
-  ubuntu_size=6
-fi
 
+  # We've got our size in GB for ROOT-C so do the math...
 
+  #calculate sector size for rootc
+  rootc_size=$(($ubuntu_size*1024*1024*2))
 
-# We've got our size in GB for ROOT-C so do the math...
+  #kernc is always 16mb
+  kernc_size=32768
 
-#calculate sector size for rootc
-rootc_size=$(($ubuntu_size*1024*1024*2))
+  #new stateful size with rootc and kernc subtracted from original
+  stateful_size=$(($state_size - $rootc_size - $kernc_size))
 
-#kernc is always 16mb
-kernc_size=32768
+  #start stateful at the same spot it currently starts at
+  stateful_start="`cgpt show -i 1 -n -b -q ${target_disk}`"
 
-#new stateful size with rootc and kernc subtracted from original
-stateful_size=$(($state_size - $rootc_size - $kernc_size))
+  #start kernc at stateful start plus stateful size
+  kernc_start=$(($stateful_start + $stateful_size))
 
-#start stateful at the same spot it currently starts at
-stateful_start="`cgpt show -i 1 -n -b -q ${target_disk}`"
+  #start rootc at kernc start plus kernc size
+  rootc_start=$(($kernc_start + $kernc_size))
 
-#start kernc at stateful start plus stateful size
-kernc_start=$(($stateful_start + $stateful_size))
+  #Do the real work
 
-#start rootc at kernc start plus kernc size
-rootc_start=$(($kernc_start + $kernc_size))
+  echo_green "\n\nModifying partition table to make room for Ubuntu." 
+  echo_green "Your Chromebook will reboot, wipe your data and then"
+  echo_green "you should re-run this script..."
+  umount -f /mnt/stateful_partition
 
-#Do the real work
+  # stateful first
+  cgpt add -i 1 -b $stateful_start -s $stateful_size -l STATE ${target_disk}
 
-echo_green "\n\nModifying partition table to make room for Ubuntu." 
-echo_green "Your Chromebook will reboot, wipe your data and then"
-echo_green "you should re-run this script..."
-umount -f /mnt/stateful_partition
+  # now kernc
+  cgpt add -i 6 -b $kernc_start -s $kernc_size -l KERN-C -t "kernel" ${target_disk}
 
-# stateful first
-cgpt add -i 1 -b $stateful_start -s $stateful_size -l STATE ${target_disk}
+  # finally rootc
+  cgpt add -i 7 -b $rootc_start -s $rootc_size -l ROOT-C ${target_disk}
 
-# now kernc
-cgpt add -i 6 -b $kernc_start -s $kernc_size -l KERN-C -t "kernel" ${target_disk}
-
-# finally rootc
-cgpt add -i 7 -b $rootc_start -s $rootc_size -l ROOT-C ${target_disk}
-
-#reboot
-exit
+  #reboot
+  exit
 fi
 
 # hwid lets us know if this is a Mario (Cr-48), Alex (Samsung Series 5), ZGB (Acer), etc
