@@ -67,7 +67,7 @@ ChromeOS - Ubuntu installation script for Chromebooks
     OPTIONS:
     -h      Show help
     -v      Enable verbose mode
-    -k	    Use Kubuntu instead of Ubuntu
+    -k      Use Kubuntu instead of Ubuntu
 
     DEVICE_PROFILE:
         The device profile to load for your Chromebook
@@ -268,9 +268,9 @@ fi
 if [ $kubuntu_toggle == 0 ]; then
     log_msg "INFO" "Downloading Ubuntu system files..."
     if [ ! -e "$eos_sys_archive" ];then
-	curl -o "$eos_sys_archive" -L -O "$eos_sys_archive_url"
+    curl -o "$eos_sys_archive" -L -O "$eos_sys_archive_url"
     else
-	log_msg "INFO" "Ubuntu system files are already downloaded...skipping"
+    log_msg "INFO" "Ubuntu system files are already downloaded...skipping"
     fi
 
     log_msg "INFO" "Validating Ubuntu system files archive md5sum..."
@@ -278,10 +278,10 @@ if [ $kubuntu_toggle == 0 ]; then
 
     #MD5 validation of Ubuntu system files archive
     if [ "$eos_sys_archive_md5" != "$eos_sys_archive_dl_md5" ];then
-	log_msg "ERROR" "Ubuntu system files archive MD5 does not match...exiting"
-	run_command "rm $eos_sys_archive"
-	log_msg "INFO" "Re-run this script to download the Ubuntu system files archive..."
-	exit 1
+    log_msg "ERROR" "Ubuntu system files archive MD5 does not match...exiting"
+    run_command "rm $eos_sys_archive"
+    log_msg "INFO" "Re-run this script to download the Ubuntu system files archive..."
+    exit 1
     else
       log_msg "INFO" "Ubuntu system files archive MD5 match...continuing"
     fi
@@ -293,9 +293,9 @@ else
 
     log_msg "INFO" "Downloading Kubuntu system files..."
     if [ ! -e "$kub_sys_archive" ];then
-	curl -o "$kub_sys_archive" -L -O "$kub_sys_archive_url"
+    curl -o "$kub_sys_archive" -L -O "$kub_sys_archive_url"
     else
-	log_msg "INFO" "kubuntu system files are already downloaded...skipping"
+    log_msg "INFO" "kubuntu system files are already downloaded...skipping"
     fi
 
     log_msg "INFO" "Validating kubuntu system files archive md5sum..."
@@ -303,10 +303,10 @@ else
 
     #MD5 validation of Ubuntu system files archive
     if [ "$kub_sys_archive_md5" != "$kub_sys_archive_dl_md5" ];then
-	log_msg "ERROR" "kubuntu system files archive MD5 does not match...exiting"
-	run_command "rm $kub_sys_archive"
-	log_msg "INFO" "Re-run this script to download the kubuntu system files archive..."
-	exit 1
+    log_msg "ERROR" "kubuntu system files archive MD5 does not match...exiting"
+    run_command "rm $kub_sys_archive"
+    log_msg "INFO" "Re-run this script to download the kubuntu system files archive..."
+    exit 1
     else
       log_msg "INFO" "kubuntu system files archive MD5 match...continuing"
     fi
@@ -451,6 +451,4 @@ run_command "rm $tmp_dir/*"
 log_msg "INFO" "(k)ubuntu installation completed. On first boot you will be asked to do the initial configuration for your system language, timezone, computer name and user account"
 log_msg "INFO" "Press [ENTER] to reboot..."
 read
-# log_msg "INFO" "Defaulting to use Ubuntu at start up..."
-# sudo -s set_gbb_flags.sh 0x00000489
 run_command "sudo reboot"
