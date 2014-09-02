@@ -14,8 +14,8 @@ touch "chrome.done"
 
 echo "Installing Sublime Text 3"
 cd $tempbuild
-wget http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3059_amd64.deb
-dpkg -i sublime-text_build-3059_amd64.deb
+wget http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3065_amd64.deb
+dpkg -i sublime-text_build-3065_amd64.deb
 touch "sublime.done"
 
 echo "Installing Vim"
