@@ -1,24 +1,22 @@
-
-===================================================
-Flatiron School installer for Ubuntu on Chromebooks
-===================================================
+=====================================
+Flatiron School's Chrubuntu Installer
+=====================================
 
 This script will install everything necessary to transform an Acer C720 into a
 Flatiron School Ready Laptop. Primarily this involves partitioning the built-in SSD and installing Ubuntu along with various patches and Flatiron School customizations.
 
-Upon completion, your computer will boot by default into the Ubuntu Parition see the [Trouble Shooting] section to change this.
+Upon completion, your computer will boot by default into the Ubuntu parition see the [Trouble Shooting] section to change this.
 
 Prerequisites
 -------------
 
 * An Acer C720 Chromebook
-* A recovery image for your Chromebook in case something goes wrong. In order to achieve that, go to [chrome://imageburner](chrome://imageburner), on your Chromebook, and follow the instructions
-* Chromebook in developer mode
+* A recovery image for your Chromebook in case something goes wrong. Make one via the [Chromebook Recovery Utility](https://chrome.google.com/webstore/detail/chromebook-recovery-utili/jndclpdbaamdhonoechobihbbiimdgai?hl=en) (For more details see how to set this up in the [Trouble Shooting](#trouble-shooting) section)
 * An external media of **at least 1GB** (USB Flash drive or SD Card)
 * Patience
 
-Usage
------
+Instructions
+------------
 
 **ATTENTION: This will wipe everything on your device**
 
@@ -31,16 +29,41 @@ Usage
 7. On the first run you will be asked how much storage space you want to dedicate to Ubuntu. We suggest choosing the default.
 8. After the first run, your system will reboot to complete the initial formatting, then you will need to re-run the script (steps 3-6) to complete the installation process (only once more)
 9. Follow the prompt to complete the installation and be sure to remove the thumb drive
-11. On first boot you will be asked to complete your system configuration (Language, Time zone, Computer name) and create a user account
+10. On first boot you will be asked to complete your system configuration (Language, Time zone, Computer name) and create a user account
+11. After you first login into your new account on Ubuntu, it will run a post install script to finish setting up the environment for your machine (RVM, Ruby, Bashrc, Git Profile, etc...). Just follow the prompts, and after that you'll be good to go
 
-Quick Tips:
------------
-1)Switch to Ubuntu(CTRL+L) or Chrome OS(CTRL+D) when the "OS verification" screen comes on 
-2)Remember that you must be in developer mode in order to switch between Ubuntu or Chrome OS
+Trouble Shooting
+----------------
+1. How do I get into developer mode?
+  - Enter [ESC + REFRESH + POWER]
+  - On reboot your screen should read "OS verification off"
+  - Enter [CTRL + d] to boot into Chrome OS or do nothing and wait ten seconds and it will do so by default
+
+2. Something went wrong, and now my screen has a menacing exclamation point and reads "Chrome OS is missing or damaged"!!! What now!?!?!?!
+  - No worries you just need to make a recovery USB or SD card with the [Chromebook Recovery Utility](https://chrome.google.com/webstore/detail/chromebook-recovery-utili/jndclpdbaamdhonoechobihbbiimdgai?hl=en)
+  **NOTE:** Google has two recovery utilties, but this is the only one that works.You will need to switch to [Chrome Beta](https://www.google.com/chrome/browser/beta.html?platform=mac&extra=betachannel) if you are using a Mac as your primary computer.
+  - Create a new image of Chrome OS specific to your machine.  As of 9/3/2014 the model number for the Acer c720 is PEPPY C6A-V3C-A86 but double check by the looking at the bottom of the scary screen you should see your machines model number
+  - After the Chromebook Recovery Utility is finished creating a recovery USB or SD simply plug it into the machine and let it do it's thing. It shouldn't take more than 5 minutes
+
+3. My computer is stuck booting into Ubuntu; how do I stop it?
+  - Restert your computer
+  - As soon as you see the screen with "OS verification off" press [CTRL + d]
+  - Login as guest and open a shell with [CTRL + ALT + t] and enter `shell`
+  - Next enter `sudo -s set_gbb_flags.sh 0x00000000`
+  - Restart your computer and you will now stay on the "OS verification off". From here switch to Ubuntu [CTRL + l] or Chrome OS[CTRL + d]
+
+4. I messed up on the post install script and entered incorrect information.  How do I change that?
+  - Open the Terminal app and run this command to rerun the post-install script by entering `curl -Lo- https://raw.githubusercontent.com/flatiron-labs/chromebook-environmentalizer/master/bootstrap.sh | bash`
+
+
+Future Plans
+------------
+Stay posted for a curl version of this script.  No more USBs!
+
 
 Credits
 -------
-* The [Code Starter Team and Project](https://codestarter.org/about) for creating the basis of this awesome install script
+* The [Code Starter Team and Project](https://codestarter.org/about) for creating awesome install script
 * The [Ubuntu](http://ubuntu.com/) development team for creating this awesome Linux distribution
 * Parimal Satyal for making a [guide](http://realityequation.net/installing-elementary-os-on-an-hp-chromebook-14) on how to install Ubuntu on the HP Chromebook 14
 * Jay Lee for creating [ChrUbuntu](http://chromeos-cr48.blogspot.ca/) from which I use a modified version
