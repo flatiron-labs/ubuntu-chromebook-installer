@@ -75,10 +75,7 @@ cd $tempbuild
 mkdir /etc/chromebook-environmentalizer/
 touch /etc/chromebook-environmentalizer/setup.sh
 chmod -R 777 /etc/chromebook-environmentalizer
-echo -e "if [ ! -f /etc/chromebook-environmentalizer/.completed ]; then\n\
-sudo touch /etc/chromebook-environmentalizer/.completed\n\
-gnome-terminal -x sh -c 'curl -Lo- https://raw.githubusercontent.com/flatiron-labs/chromebook-environmentalizer/master/bootstrap.sh | bash'\n\
-fi" > /etc/chromebook-environmentalizer/setup.sh
+echo -e "gnome-terminal -x sh -c 'curl -Lo- https://raw.githubusercontent.com/flatiron-labs/chromebook-environmentalizer/master/bootstrap.sh | bash'" > /etc/chromebook-environmentalizer/setup.sh
 touch "chromebook-environmentalizer-script.done"
 
 # These dconf overrides do the following:

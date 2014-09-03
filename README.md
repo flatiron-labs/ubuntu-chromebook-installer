@@ -39,6 +39,11 @@ Trouble Shooting
   - On reboot your screen should read "OS verification off"
   - Enter [CTRL + d] to boot into Chrome OS or do nothing and wait ten seconds and it will do so by default
 
+2. I keep trying to run the install script off the USB, but I keep getting an error saying it's read only and sudo doesn't work.
+  - Likely the USB or SD card is not properly formatted
+  - Use an application like Disk Utility on Macs to make sure the USB or SD card is formatted in FAT 32
+  - If it is not erase and reformat the USB or SD card as FAT 32
+
 2. Something went wrong, and now my screen has a menacing exclamation point and reads "Chrome OS is missing or damaged"!!! What now!?!?!?!
   - No worries you just need to make a recovery USB or SD card with the [Chromebook Recovery Utility](https://chrome.google.com/webstore/detail/chromebook-recovery-utili/jndclpdbaamdhonoechobihbbiimdgai?hl=en)
   **NOTE:** Google has two recovery utilties, but this is the only one that works.You will need to switch to [Chrome Beta](https://www.google.com/chrome/browser/beta.html?platform=mac&extra=betachannel) if you are using a Mac as your primary computer.
