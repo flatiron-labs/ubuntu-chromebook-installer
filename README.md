@@ -37,7 +37,7 @@ Trouble Shooting
 1. How do I get into developer mode?
   - Enter [ESC + REFRESH + POWER]
   - On reboot your screen should read "Chrome OS is Damaged"
-  - Ignore it; it's lying. Enter [CTRL + d]
+  - Ignore it; it's lying. Enter [CTRL + d] and then [ENTER]
 
 2. I keep trying to run the install script off the USB, but I keep getting an error saying it's read only and sudo doesn't work.
   - Likely the USB or SD card is not properly formatted
