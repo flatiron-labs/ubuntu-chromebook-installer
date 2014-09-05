@@ -32,6 +32,8 @@ Instructions
 10. On first boot you will be asked to complete your system configuration (Language, Time zone, Computer name) and create a user account
 11. After you first login into your new account on Ubuntu, it will run a post install script to finish setting up the environment for your machine (RVM, Ruby, Bashrc, Git Profile, etc...). Just follow the prompts, and after that you'll be good to go
 
+**OPTIONAL STEP:** Remove the Write Protect screw to default boot into ChrUbuntu.  ***WARNING*** Doing this ***WILL*** void your warranty and could potentially ***BRICK*** your computer. If you want to do this see trouble shooting number 6.
+
 Trouble Shooting
 ----------------
 1. How do I get into developer mode?
@@ -59,6 +61,23 @@ Trouble Shooting
 
 4. I messed up on the post install script and entered incorrect information.  How do I change that?
   - Open the Terminal app and run this command to rerun the post-install script by entering `curl -Lo- https://raw.githubusercontent.com/flatiron-labs/chromebook-environmentalizer/master/bootstrap.sh | bash`
+
+5. I've run the install script, ChrUbuntu was installed, but I'm stuck being logged in as guest.
+  - The source of this bug remains a mystery as of right now, but it is likely something went wrong with installing the patches for the Ubuntu OS
+  - To fix this you need to wipe your computer using the Chrome OS Recovery Image and reinstall
+
+6. When I run the code to default boot into ChrUbuntu it keeps telling me it fails because of a "Write Protect Screw"
+  - To default boot into ChrUbuntu you have to remove the Write Protect screw that prevents changes to the SeaBIOS
+  **NOTE** Doing this will void the warranty on the computer and potentionally brick the computer.  **WE ARE NOT RESPONSIBLE FOR ANY DAMAGE TO YOUR MACHINE IF YOU *CHOOSE* TO DO THIS**
+  - Turn off the computer
+  - Flip the computer over and remove all 13 screws from the bottom (there is one beind the sticker that reads, "Warranty Void If Seal Is Broken")
+  - Gently, unsnap the bottom of the case using your finger nails or a flathead screw driver.  These snaps should easily seperate so no need to force it
+  - Once the case is removed locate the write protect screw, which is number 7 in [this photo](http://www.chromium.org/_/rsrc/1381990807648/chromium-os/developer-information-for-chrome-os-devices/acer-c720-chromebook/c720-chromebook-annotated-innards.png) and remove it
+  - Replace the bottom case, making sure it snaps back into place.  Now put back the 13 screws you removed
+  - Reboot the computer and press [CTRL + d]
+  - Go into a shell terminal [CTRL + ALT + t] and then enter `shell`
+  - Finally enter `sudo -s set_gbb_flags.sh 0x00000489`
+
 
 
 Future Plans

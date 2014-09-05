@@ -1,4 +1,4 @@
-# This script customizes the Acer C720 with Codestarter-specific programs and
+# This script customizes the Acer C720 with Flatiron-specific programs and
 # settings. The 'x' that prefixes the script name ensures that this is the last
 # device script to be run.
 
@@ -55,8 +55,8 @@ touch "git.done"
 
 echo "Installing wallpaper"
 cd $tempbuild
-wget https://s3-us-west-1.amazonaws.com/mojombo-codestarter/codestarter-tree.jpg
-cp codestarter-tree.jpg /usr/share/backgrounds
+wget "http://flatiron-school.s3.amazonaws.com/Chromebook%20Wallpapers/FS_Wallpaper_Gen.jpg"
+cp FS_Wallpaper_Gen.jpg /usr/share/backgrounds
 touch "wallpaper.done"
 
 echo "Installing Chromebook Environmentalizer Desktop"
@@ -81,7 +81,7 @@ touch "chromebook-environmentalizer-script.done"
 # These dconf overrides do the following:
 # 1. Customizes the Launcher (left dock bar) to hold commonly used programs.
 # 2. Sets trackpad scrolling to "natural" (same as default on OSX).
-# 3. Sets the desktop background to custom Codestarter wallpaper.
+# 3. Sets the desktop background to custom Flatiron wallpaper.
 echo "Installing dconf overrides"
 cd $tempbuild
 echo -e "[com.canonical.Unity.Launcher]\n\
@@ -94,7 +94,7 @@ natural-scroll=true\n\
 \n\
 [org.gnome.desktop.background]\n\
 \n\
-picture-uri='file:///usr/share/backgrounds/codestarter-tree.jpg'" > /usr/share/glib-2.0/schemas/codestarter.gschema.override
+picture-uri='file:///usr/share/backgrounds/FS_Wallpaper_Gen.jpg'" > /usr/share/glib-2.0/schemas/flatiron.gschema.override
 glib-compile-schemas /usr/share/glib-2.0/schemas/
 touch "dconf-overrides.done"
 
