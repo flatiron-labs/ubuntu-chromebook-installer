@@ -68,7 +68,7 @@ Stay posted for a curl version of this script.  No more USBs!
 
 Credits
 -------
-* The [Code Starter Team and Project](https://codestarter.org/about) for creating awesome install script
+* The [Code Starter Team and Project](https://codestarter.org/about) for creating this awesome install script that was the basis of this one
 * The [Ubuntu](http://ubuntu.com/) development team for creating this awesome Linux distribution
 * Parimal Satyal for making a [guide](http://realityequation.net/installing-elementary-os-on-an-hp-chromebook-14) on how to install Ubuntu on the HP Chromebook 14
 * Jay Lee for creating [ChrUbuntu](http://chromeos-cr48.blogspot.ca/) from which I use a modified version
