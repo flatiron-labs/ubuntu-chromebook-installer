@@ -36,8 +36,8 @@ Trouble Shooting
 ----------------
 1. How do I get into developer mode?
   - Enter [ESC + REFRESH + POWER]
-  - On reboot your screen should read "OS verification off"
-  - Enter [CTRL + d] to boot into Chrome OS or do nothing and wait ten seconds and it will do so by default
+  - On reboot your screen should read "Chrome OS is Damaged"
+  - Ignore it; it's lying. Enter [CTRL + d]
 
 2. I keep trying to run the install script off the USB, but I keep getting an error saying it's read only and sudo doesn't work.
   - Likely the USB or SD card is not properly formatted
@@ -47,15 +47,15 @@ Trouble Shooting
 2. Something went wrong, and now my screen has a menacing exclamation point and reads "Chrome OS is missing or damaged"!!! What now!?!?!?!
   - No worries you just need to make a recovery USB or SD card with the [Chromebook Recovery Utility](https://chrome.google.com/webstore/detail/chromebook-recovery-utili/jndclpdbaamdhonoechobihbbiimdgai?hl=en)
   **NOTE:** Google has two recovery utilties, but this is the only one that works.You will need to switch to [Chrome Beta](https://www.google.com/chrome/browser/beta.html?platform=mac&extra=betachannel) if you are using a Mac as your primary computer.
-  - Create a new image of Chrome OS specific to your machine.  As of 9/3/2014 the model number for the Acer c720 is PEPPY C6A-V3C-A86 but double check by the looking at the bottom of the scary screen you should see your machines model number
+  - Create a new image of Chrome OS specific to your machine.  As of 9/3/2014 the model number for the Acer c720 is PEPPY C6A-N3C-A70 but double check by the looking at the bottom of the scary screen you should see your machines model number
   - After the Chromebook Recovery Utility is finished creating a recovery USB or SD simply plug it into the machine and let it do it's thing. It shouldn't take more than 5 minutes
 
 3. My computer is stuck booting into Ubuntu; how do I stop it?
-  - Restert your computer
+  - Restart your computer
   - As soon as you see the screen with "OS verification off" press [CTRL + d]
   - Login as guest and open a shell with [CTRL + ALT + t] and enter `shell`
   - Next enter `sudo -s set_gbb_flags.sh 0x00000000`
-  - Restart your computer and you will now stay on the "OS verification off". From here switch to Ubuntu [CTRL + l] or Chrome OS[CTRL + d]
+  - Restart your computer and you will now stay on the "OS verification off". From here switch to Ubuntu [CTRL + l] or Chrome OS [CTRL + d]
 
 4. I messed up on the post install script and entered incorrect information.  How do I change that?
   - Open the Terminal app and run this command to rerun the post-install script by entering `curl -Lo- https://raw.githubusercontent.com/flatiron-labs/chromebook-environmentalizer/master/bootstrap.sh | bash`
