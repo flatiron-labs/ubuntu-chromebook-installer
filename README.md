@@ -49,7 +49,7 @@ Trouble Shooting
 2. Something went wrong, and now my screen has a menacing exclamation point and reads "Chrome OS is missing or damaged"!!! What now!?!?!?!
   - No worries you just need to make a recovery USB or SD card with the [Chromebook Recovery Utility](https://chrome.google.com/webstore/detail/chromebook-recovery-utili/jndclpdbaamdhonoechobihbbiimdgai?hl=en)
   **NOTE:** Google has two recovery utilties, but this is the only one that works.You will need to switch to [Chrome Beta](https://www.google.com/chrome/browser/beta.html?platform=mac&extra=betachannel) if you are using a Mac as your primary computer.
-  - Create a new image of Chrome OS specific to your machine.  This model no is at the bottom of the scary screen you should see your machines model number
+  - Create a new image of Chrome OS specific to your machine.  The model number is at the bottom of the scary screen you should see your machines model number
   - After the Chromebook Recovery Utility is finished creating a recovery USB or SD simply plug it into the machine and let it do it's thing. It shouldn't take more than 5 minutes
 
 3. My computer is stuck booting into Ubuntu; how do I stop it?
