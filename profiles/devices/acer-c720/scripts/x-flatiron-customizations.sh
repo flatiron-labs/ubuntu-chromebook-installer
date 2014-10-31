@@ -94,7 +94,7 @@ natural-scroll=true\n\
 \n\
 [org.gnome.desktop.background]\n\
 \n\
-picture-uri='file:///usr/share/backgrounds/FS_Wallpaper_Gen.jpg'" > /usr/share/glib-2.0/schemas/flatiron.gschema.override
+picture-uri='file:///usr/share/backgrounds/general-wallpaper.jpg'" > /usr/share/glib-2.0/schemas/flatiron.gschema.override
 glib-compile-schemas /usr/share/glib-2.0/schemas/
 touch "dconf-overrides.done"
 
