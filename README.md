@@ -20,7 +20,10 @@ Instructions
 
 **ATTENTION: This will wipe everything on your device**
 
-1. Enable [developer mode](http://www.chromium.org/chromium-os/developer-information-for-chrome-os-devices/acer-c720-chromebook).
+1. Enable [developer mode](http://www.chromium.org/chromium-os/developer-information-for-chrome-os-devices/acer-c720-chromebook.
+  - Press [ESC + REFRESH + POWER]
+  - You will be brought to a new screen and press [CTRL + d]
+  - Finally press [ENTER]
 2. Download the [latest version of this installer](https://github.com/flatiron-labs/ubuntu-chromebook-installer/archive/master.zip) and extract it to a removable media
 3. Boot into ChromeOS, connect to a wireless network and log in as guest
 4. Open a shell (CTRL + ALT + t) and type `shell`
