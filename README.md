@@ -35,7 +35,7 @@ Instructions
 10. On first boot you will be asked to complete your system configuration (Language, Time zone, Computer name) and create a user account
 11. After you first login into your new account on Ubuntu, it will run a post install script to finish setting up the environment for your machine (RVM, Ruby, Bashrc, Git Profile, etc...). Just follow the prompts, and after that you'll be good to go
 
-**OPTIONAL STEP:** Remove the Write Protect screw to default boot into ChrUbuntu.  ***WARNING*** Doing this ***WILL*** void your warranty and could potentially ***BRICK*** your computer. If you want to do this see trouble shooting number 6.
+**OPTIONAL STEP:** Remove the Write Protect screw to default boot into ChrUbuntu.  ***WARNING*** Doing this ***WILL*** void your warranty and could potentially ***BRICK*** your computer. If you want to do this see trouble shooting number 7.
 
 Trouble Shooting
 ----------------
