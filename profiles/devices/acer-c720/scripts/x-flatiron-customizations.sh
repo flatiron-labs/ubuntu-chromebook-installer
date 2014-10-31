@@ -55,8 +55,8 @@ touch "git.done"
 
 echo "Installing wallpaper"
 cd $tempbuild
-wget "http://flatiron-school.s3.amazonaws.com/Chromebook%20Wallpapers/FS_Wallpaper_Gen.jpg"
-cp FS_Wallpaper_Gen.jpg /usr/share/backgrounds
+wget "http://flatiron-school-chromebook-installer.s3.amazonaws.com/general-wallpaper.jpg"
+cp general-wallpaper.jpg /usr/share/backgrounds
 touch "wallpaper.done"
 
 echo "Installing Chromebook Environmentalizer Desktop"
