@@ -7,7 +7,6 @@ script_dir=`dirname "$BASH_SOURCE"`
 current_dir="."
 
 verbose=0
-kubuntu_toggle=0
 
 #Script global directory variables
 log_file="ubuntu-install.log"
@@ -43,19 +42,13 @@ system_chroot="/tmp/urfs/"
 
 #distro specific requirements
 #A filesystem version of live ISO squashfs content 
-eos_sys_archive_url="http://us.bucketexplorer.7071edbdbb1169aa0127873b1b45608c850bd791.s3.amazonaws.com/chromebook-ubuntu/ubuntu-image-041314.tar.gz"
+eos_sys_archive_url="http://flatiron-school-chromebook-installer.s3.amazonaws.com/ubuntu_system.tar.gz"
 if [ -e "$current_dir/../ubuntu_system.tar.gz" ];then
   eos_sys_archive="$current_dir/../ubuntu_system.tar.gz"
 else
   eos_sys_archive="$tmp_dir/ubuntu_system.tar.gz"
 fi
 eos_sys_archive_md5="2a14cd56e0e116e921b064ee2959280a"
-
-#kubuntu disto
-#A filesystem version of live ISO squashfs content 
-kub_sys_archive_url="http://us.bucketexplorer.7071edbdbb1169aa0127873b1b45608c850bd791.s3.amazonaws.com/chromebook-ubuntu/kubuntu-image-041314.tar.gz"
-kub_sys_archive="$tmp_dir/kubuntu_system.tar.gz"
-kub_sys_archive_md5="6c3485b05f6de42027f23b4217b6c84d"
 
 #Functions definition
 usage(){
@@ -67,7 +60,6 @@ ChromeOS - Ubuntu installation script for Chromebooks
     OPTIONS:
     -h      Show help
     -v      Enable verbose mode
-    -k	    Use Kubuntu instead of Ubuntu
 
     DEVICE_PROFILE:
         The device profile to load for your Chromebook
@@ -146,9 +138,6 @@ while getopts "hvk" option; do
             ;;
         v)
             verbose=1
-            ;;
-        k)
-            kubuntu_toggle=1
             ;;
         ?)
             usage
@@ -265,56 +254,30 @@ if [ ! -e "$system_partition" ];then
     log_msg "ERROR" "System drive $system_partition does not exist...exiting"
     exit 1
 fi
-if [ $kubuntu_toggle == 0 ]; then
-    log_msg "INFO" "Downloading Ubuntu system files..."
-    if [ ! -e "$eos_sys_archive" ];then
-	curl -o "$eos_sys_archive" -L -O "$eos_sys_archive_url"
-    else
-	log_msg "INFO" "Ubuntu system files are already downloaded...skipping"
-    fi
 
-    log_msg "INFO" "Validating Ubuntu system files archive md5sum..."
-    eos_sys_archive_dl_md5=$(md5sum $eos_sys_archive | awk '{print $1}')
-
-    #MD5 validation of Ubuntu system files archive
-    if [ "$eos_sys_archive_md5" != "$eos_sys_archive_dl_md5" ];then
-	log_msg "ERROR" "Ubuntu system files archive MD5 does not match...exiting"
-	run_command "rm $eos_sys_archive"
-	log_msg "INFO" "Re-run this script to download the Ubuntu system files archive..."
-	exit 1
-    else
-      log_msg "INFO" "Ubuntu system files archive MD5 match...continuing"
-    fi
-
-    log_msg "INFO" "Installing Ubuntu system files to $system_chroot..."
-    run_command "tar -xf $eos_sys_archive -C $system_chroot"
-    
+log_msg "INFO" "Downloading Ubuntu system files..."
+if [ ! -e "$eos_sys_archive" ];then
+  curl -o "$eos_sys_archive" -L -O "$eos_sys_archive_url"
 else
-
-    log_msg "INFO" "Downloading Kubuntu system files..."
-    if [ ! -e "$kub_sys_archive" ];then
-	curl -o "$kub_sys_archive" -L -O "$kub_sys_archive_url"
-    else
-	log_msg "INFO" "kubuntu system files are already downloaded...skipping"
-    fi
-
-    log_msg "INFO" "Validating kubuntu system files archive md5sum..."
-    kub_sys_archive_dl_md5=$(md5sum $kub_sys_archive | awk '{print $1}')
-
-    #MD5 validation of Ubuntu system files archive
-    if [ "$kub_sys_archive_md5" != "$kub_sys_archive_dl_md5" ];then
-	log_msg "ERROR" "kubuntu system files archive MD5 does not match...exiting"
-	run_command "rm $kub_sys_archive"
-	log_msg "INFO" "Re-run this script to download the kubuntu system files archive..."
-	exit 1
-    else
-      log_msg "INFO" "kubuntu system files archive MD5 match...continuing"
-    fi
-
-    log_msg "INFO" "Installing kubuntu system files to $system_chroot..."
-    run_command "tar -xf $kub_sys_archive -C $system_chroot"
-
+  log_msg "INFO" "Ubuntu system files are already downloaded...skipping"
 fi
+
+log_msg "INFO" "Validating Ubuntu system files archive md5sum..."
+eos_sys_archive_dl_md5=$(md5sum $eos_sys_archive | awk '{print $1}')
+
+#MD5 validation of Ubuntu system files archive
+if [ "$eos_sys_archive_md5" != "$eos_sys_archive_dl_md5" ];then
+  log_msg "ERROR" "Ubuntu system files archive MD5 does not match...exiting"
+  run_command "rm $eos_sys_archive"
+  log_msg "INFO" "Re-run this script to download the Ubuntu system files archive..."
+  exit 1
+else
+  log_msg "INFO" "Ubuntu system files archive MD5 match...continuing"
+fi
+
+log_msg "INFO" "Installing Ubuntu system files to $system_chroot..."
+run_command "tar -xf $eos_sys_archive -C $system_chroot"
+
 if [ -e "$default_sys_dir" ];then
     log_msg "INFO" "Copying global system files to $system_chroot..."
     run_command "sudo cp -Rvu $default_sys_dir/. $system_chroot"
