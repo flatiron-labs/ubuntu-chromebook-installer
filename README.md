@@ -26,7 +26,7 @@ Instructions
   - Finally press [ENTER]
 2. Download the [latest version of this installer](https://github.com/flatiron-labs/ubuntu-chromebook-installer/archive/master.zip) and extract it to a removable media
 3. Boot into ChromeOS, connect to a wireless network and log in as guest
-4. Open a shell (CTRL + ALT + t) and type `shell`
+4. Open a shell [CTRL + ALT + t] and type `shell`
 5. From the shell go to the location of the script on the removable media `cd /media/removable/` and press **[TAB] [TAB]** on your keyboard to show and auto-complete your removable media path automatically
 6. Run the script with `sudo bash main.sh`
 7. On the first run you will be asked how much storage space you want to dedicate to Ubuntu. We suggest choosing the default.
