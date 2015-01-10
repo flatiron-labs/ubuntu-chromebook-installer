@@ -20,7 +20,7 @@ Instructions
 
 **ATTENTION: This will wipe everything on your device**
 
-1. Enable [developer mode](http://www.chromium.org/chromium-os/developer-information-for-chrome-os-devices/acer-c720-chromebook.
+1. Enable [developer mode](http://www.chromium.org/chromium-os/developer-information-for-chrome-os-devices/acer-c720-chromebook).
   - Press [ESC + REFRESH + POWER]
   - You will be brought to a new screen and press [CTRL + d]
   - Finally press [ENTER]
