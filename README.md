@@ -79,7 +79,7 @@ Trouble Shooting
   - Replace the bottom case, making sure it snaps back into place.  Now put back the 13 screws you removed
   - Reboot the computer and press [CTRL + d]
   - Go into a shell terminal [CTRL + ALT + t] and then enter `shell`
-  - Finally enter `sudo -s set_gbb_flags.sh 0x00000489`
+  - Finally enter `sudo /usr/share/vboot/bin/set_gbb_flags.sh 0x489`
 
 
 

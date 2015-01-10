@@ -413,7 +413,7 @@ run_command "rm $tmp_dir/*"
 
 log_msg "INFO" "Defaulting to use Ubuntu at start up..."
 log_msg "INFO" "If your Protect Write Screw is removed..."
-sudo -s set_gbb_flags.sh 0x00000489
+sudo /usr/share/vboot/bin/set_gbb_flags.sh 0x489
 
 log_msg "INFO" "(k)ubuntu installation completed. On first boot you will be asked to do the initial configuration for your system language, timezone, computer name and user account"
 log_msg "INFO" "Press [ENTER] to reboot..."
