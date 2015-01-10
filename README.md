@@ -70,6 +70,7 @@ Trouble Shooting
   - To fix this you need to wipe your computer using the Chrome OS Recovery Image and reinstall
 
 6. When I run the code to default boot into ChrUbuntu it keeps telling me it fails because of a "Write Protect Screw"
+  - For detailed instructions see the [Remove Write Screw Instructions](/remove-write-screw-instructions.md)
   - To default boot into ChrUbuntu you have to remove the Write Protect screw that prevents changes to the SeaBIOS
   **NOTE** Doing this will void the warranty on the computer and potentionally brick the computer.  **WE ARE NOT RESPONSIBLE FOR ANY DAMAGE TO YOUR MACHINE IF YOU *CHOOSE* TO DO THIS**
   - Turn off the computer
